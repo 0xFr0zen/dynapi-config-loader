@@ -1,4 +1,7 @@
 <?php
+	
+//Access-Control-Allow-Origin header with wildcard.
+header('Access-Control-Allow-Origin: *');
 function parser($t, $v) {
     $result;
     switch ($t) {
