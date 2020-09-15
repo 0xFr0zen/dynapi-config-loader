@@ -55,15 +55,21 @@ if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
 $config = [];
-if(isset($_GET['backend'])){
-    $config["backend"] = getBackendConfig($conn);
-}
+$config["backend"] = getBackendConfig($conn);
+$config["frontend"] = getFrontendConfig($conn);
 
-if(isset($_GET['frontend'])){
-    $config["frontend"] = getFrontendConfig($conn);
-}
 header("Content-Type: application/json");
 
-print(json_encode($config));
+if(isset($_GET['backend'])){
+    print(json_encode($config['backend']));
+
+}elseif(isset($_GET['frontend'])){
+    print(json_encode($config['frontend']));
+
+}else {
+    print(json_encode($config));
+
+}
+
 
 ?>
